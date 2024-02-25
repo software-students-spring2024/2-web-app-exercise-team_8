@@ -1,0 +1,159 @@
+
+body{
+  background-color: #B8C3E9;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+/* -----------------nav bar -------------------- */
+
+nav{
+  background-color: #D9D9D9;
+  display: flex;
+  font-size: 20px;
+  text-decoration: none;
+  justify-content: space-between; 
+  width: 100%;
+}
+
+nav ul li{
+  display: inline-block;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  text-decoration: none;
+  color: black;
+  width: 100%;
+}
+
+nav ul li a{
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+.home{
+  margin-left: 0
+
+} 
+.profile{
+  margin-left: 300px;
+}
+
+/* ----------------- GROUP INFO -------------------- */
+.group{
+  height: 350px;
+}
+.background-photo{
+  height: 180px;
+  width: 100%;
+  border: solid;
+  display: block;
+  background-color: rgb(255, 255, 255);
+}
+
+.profile-pic{
+  height: 150px;
+  width: 150px;
+  border: solid;
+  border-radius: 50%;
+  position: absolute;
+  top: 70%;
+  left: 50%; 
+  transform: translateX(-50%);
+  z-index: 1;
+  background-color: grey;
+}
+
+.photo{
+  position: relative;
+}
+
+.group-info{
+  margin-top: 110px;
+  text-align: center;
+}
+
+.name{
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 0px;
+}
+
+.desc{
+  font-weight: 400;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+/* ----------------- MEMBERS -------------------- */
+.section-header{
+  font-size: 25px;
+  margin-bottom: 5px;
+  margin-left: 2%;
+}
+
+.individuals{
+  /* border: solid; */
+  width: 100%;
+  margin-top: 0px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.individual{
+  /* border: solid; */
+  height: 90px;
+  width: 80px;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 1%;
+  margin-bottom: 15px;
+  margin-left: 1%;
+}
+
+.individual-profilepic{
+  height: 80px;
+  width: 80px;
+  border: solid;
+  border-radius: 50%;
+  margin-bottom: 0px;
+}
+
+.individual-name{
+  margin-top: 0px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+
+/* ----------------- POSTS -------------------- */
+.posts-lists ul li{
+  font-size: 25px;
+  font-weight: 800;
+  margin-top: 0px;
+  text-decoration: underline;
+}
+
+.posts{
+  margin-bottom: 100px;
+}
+
+footer{
+  position: relative;
+  bottom: 0;
+}
