@@ -9,13 +9,139 @@ html, body {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
+
+
 }
 
 main {
   flex: 1;
 }
+
+
+/* ---------------------------------------- PERSONAL PROFILE PAGE ------------------------------------------ */
+
+.profile-pic{
+  border: solid;
+  height: 200px;
+  width: 170px;
+  display: inline-block;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  margin-top: 5%;
+  margin-left: 3%;
+}
+
+.photo {
+  padding: 5px;
+  margin-right: 3%;
+}
+
+
+.person-info {
+  flex-grow: 1;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.desc {
+
+}
+
+/* ----------------- groups -------------------- */
+
+.section-header{
+  font-size: 25px;
+  margin-bottom: 5px;
+  margin-left: 2%;
+}
+
+.all-groups{
+  /* border: solid; */
+  width: 100%;
+  margin-top: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 4%;
+}
+
+.group{
+  /* border: solid; */
+  height: 90px;
+  width: 80px;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 1%;
+  margin-bottom: 15px;
+  margin-left: 1%;
+}
+
+.group-profilepic{
+  height: 80px;
+  width: 80px;
+  border: solid;
+  border-radius: 50%;
+  margin-bottom: 0px;
+}
+
+.group-name{
+  margin-top: 0px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+/* ----------------- friends -------------------- */
+
+.section-header{
+  font-size: 25px;
+  margin-bottom: 5px;
+  margin-left: 2%;
+}
+
+.all-friends{
+  /* border: solid; */
+  width: 100%;
+  margin-top: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 4%;
+}
+
+.friend{
+  /* border: solid; */
+  height: 90px;
+  width: 80px;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 1%;
+  margin-bottom: 15px;
+  margin-left: 1%;
+}
+
+.friend-profilepic{
+  height: 80px;
+  width: 80px;
+  border: solid;
+  border-radius: 50%;
+  margin-bottom: 0px;
+}
+
+.friend-name{
+  margin-top: 0px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+
+/* ---------------------------------------- GROUP PROFILE PAGE ------------------------------------------ */
 /* -----------------nav bar -------------------- */
 
 nav{
@@ -64,7 +190,7 @@ nav ul li a{
   background-color: rgb(255, 255, 255);
 }
 
-.profile-pic{
+.group-pic{
   height: 150px;
   width: 150px;
   border: solid;
