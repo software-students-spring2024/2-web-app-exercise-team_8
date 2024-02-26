@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #b8c2e9;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .outer_square {
+            width: 20px;
+            height: 20px;
+            border: 1px solid black;
+            position: relative;
+        }
+
+        .inner_square {
+            width: 10px;
+            height: 10px;
+            border: 1px solid black;
+            position: absolute;
+        }
+
+        .inner_square:nth-child(1) {
+            top: 0;
+            right: 0;
+            z-index: 5;
+        }
+
+        .inner_square:nth-child(2) {
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            z-index: 4;
+        }
+
+        .inner_square:nth-child(3) {
+            bottom: 0;
+            left: 0;
+            z-index: 3;
+        }
+
+        .header {
+            padding: 20px;
+        }
+
+        .header button {
+            margin-top: 20px;
+            padding: 3px 30px;
+        }
+
+        img {
+            border-radius: 50%;
+        }
+
+        .image_grid {
+            border-bottom: 1px solid black;
+            border-top: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding-bottom: 15px;
+            padding-top: 15px;
+        }
+
+        .header+div.image_grid {
+            border-top: none;
+            padding-top: none;
+        }
+
+        .image_grid img {
+            width: 20%;
+        }
+
+        h1 {
+            margin: 20px;
+            text-align: center;
+        }
+
+        h3 {
+            padding: 5px;
+            font-weight: normal;
+        }
+
+        .scrollable {
+            height: 400px;
+            overflow: scroll;
+        }
+
+        .unit {
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            background-color: white;
+            width: 100vw;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer img {
+            width: 30px;
+            height: auto;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="outer_square">
+            <div class="inner_square"></div>
+            <div class="inner_square"></div>
+            <div class="inner_square"></div>
+        </div>
+        <button>
+            Groups
+        </button>
+        <div>
+            <img src="https://placehold.co/30x20" alt="20x20">
+            <p>user</p>
+        </div>
+    </div>
+    <div class="image_grid">
+        <img src="https://placehold.co/90x80" alt="80x80">
+        <img src="https://placehold.co/90x80" alt="80x80">
+        <img src="https://placehold.co/90x80" alt="80x80">
+        <img src="https://placehold.co/90x80" alt="80x80">
+    </div>
+    <div class="scrollable">
+        <h1>
+            Weeks
+        </h1>
+        <div class="unit">
+            <h3>
+                current week
+            </h3>
+            <div class="image_grid">
+                <img src="https://placehold.co/90x80" alt="80x80">
+                <img src="https://placehold.co/90x80" alt="80x80">
+                <img src="https://placehold.co/90x80" alt="80x80">
+                <img src="https://placehold.co/90x80" alt="80x80">
+            </div>
+        </div>
+        <div class="unit">
+            <h3>
+                week number
+            </h3>
+            <div class="image_grid">
+                <img src="https://placehold.co/90x80" alt="80x80">
+                <img src="https://placehold.co/90x80" alt="80x80">
+                <img src="https://placehold.co/90x80" alt="80x80">
+                <img src="https://placehold.co/90x80" alt="80x80">
+            </div>
+        </div>
+        <div class="unit">
+            <h3>
+                week number
+            </h3>
+            <div class="image_grid">
+                <img src="https://placehold.co/90x80" alt="80x80">
+                <img src="https://placehold.co/90x80" alt="80x80">
+                <img src="https://placehold.co/90x80" alt="80x80">
+                <img src="https://placehold.co/90x80" alt="80x80">
+            </div>
+        </div>
+        <div class="unit">
+            <h3>
+                week number
+            </h3>
+            <div class="image_grid">
+                <img src="https://placehold.co/90x80" alt="80x80">
+                <img src="https://placehold.co/90x80" alt="80x80">
+                <img src="https://placehold.co/90x80" alt="80x80">
+                <img src="https://placehold.co/90x80" alt="80x80">
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <img src="search.png" alt="80x80">
+        <p>search</p>
+    </div>
+</body>
+
+</html>
