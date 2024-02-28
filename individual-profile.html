@@ -28,8 +28,31 @@
       </div>
      </div>
 
-
      <div class="groups">
+      <h3 class="section-header">Groups</h3>
+      <div class="all-groups">
+        {% for group in groups %}
+        <div class="group"> 
+          <img class="group-profilepic" src="{{ url_for('static', filename='images/' + group['profile_pic']) }}" alt="{{ group['name'] }} Profile Pic">
+          <p class="group-name">{{ group['name'] }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <div class="friends">
+      <h3 class="section-header">Friends</h3>
+      <div class="all-friends">
+        {% for friend in friends %}
+        <div class="friend"> 
+          <img class="friend-profilepic" src="{{ url_for('static', filename='images/' + friend['profile_pic']) }}" alt="{{ friend['name'] }} Profile Pic">
+          <p class="friend-name">{{ friend['name'] }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+     <!-- <div class="groups">
       <h3 class="section-header">Groups</h3>
       <div class="all-groups">
         <div class="group"> 
@@ -83,7 +106,7 @@
           <p class="friend-name">name</p>
         </div>
       </div>
-     </div>
+     </div> -->
 
      <footer>
       <nav class="footer-nav">
