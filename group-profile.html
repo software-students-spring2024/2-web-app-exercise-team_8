@@ -27,7 +27,21 @@
         <p class="desc">DESC</p>
       </div>
      </div>
+
      <div class="members">
+      <div class="data">
+        {% for member in members %}
+        <div class="individual"> 
+          <!-- need to adjust accessing data here -->
+           <!-- note: where are we storing these images -->
+          <img class="individual-profilepic" src="{{ url_for('static', filename='images/' + member[1]) }}" alt="{{ member[0] }} Profile Pic">
+          <p class="individual-name">{{ member[0] }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+     <!-- <div class="members">
       <h3 class="section-header">Members</h3>
       <div class="individuals">
         <div class="individual"> 
@@ -77,7 +91,7 @@
 
         
       </div>
-     </div>
+     </div> -->
 
      <div class="posts">
       <h3 class="section-header">Posts</h3>
