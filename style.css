@@ -3,9 +3,16 @@
   padding: 0;
 }
 
+footer{
+  margin-top: auto;
+}
+
 body {
   background-color: #b8c2e9;
   font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .go-home, .go-profile {
@@ -40,18 +47,35 @@ body {
 
 /* ---------------------------------------- PERSONAL PROFILE PAGE ------------------------------------------ */
 
+.edit{
+  margin: 0;
+  padding: 5;
+  height: 30px;
+  margin-left: 80%;
+  margin-top: 15px;
+}
+.edit-button{
+  background-color: blue;
+  padding: 10px;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 25px;
+  display: block;
+  margin-bottom: 50px;
+}
 .profile-pic{
   border: solid;
-  height: 200px;
-  width: 170px;
+  height: 250px;
+  width: 220px;
   display: inline-block;
 }
 
 .person {
   display: flex;
   align-items: center;
-  margin-top: 5%;
-  margin-left: 3%;
+  margin-top: 1%;
+  margin-left: 1%;
 }
 
 .photo {
@@ -62,249 +86,72 @@ body {
 
 .person-info {
   flex-grow: 1;
+  display: block;
 }
 
 .name {
   font-weight: bold;
+  margin: 0;
 }
 
-.desc {
-
+.personal-info{
+  margin-left: 10%;
+  margin-top: 10%;
 }
-
-/* ----------------- groups -------------------- */
-
-.section-header{
-  font-size: 25px;
-  margin-bottom: 5px;
-  margin-left: 2%;
+.personal-info ul li {
+  margin-bottom: 2%;
+  padding: 1px;
+  font-weight: 800;
 }
-
-.all-groups{
-  /* border: solid; */
-  width: 100%;
-  margin-top: 0px;
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 4%;
+#person-personal-info{
+  font-weight: 400;
 }
-
-.group{
-  /* border: solid; */
-  height: 90px;
-  width: 80px;
-  display: inline-block;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  margin-top: 1%;
-  margin-bottom: 15px;
-  margin-left: 1%;
-}
-
-.group-profilepic{
-  height: 80px;
-  width: 80px;
-  border: solid;
-  border-radius: 50%;
-  margin-bottom: 0px;
-}
-
-.group-name{
-  margin-top: 0px;
-  margin-bottom: 5px;
-  text-align: center;
-}
-
-/* ----------------- friends -------------------- */
-
-.section-header{
-  font-size: 25px;
-  margin-bottom: 5px;
-  margin-left: 2%;
-}
-
-.all-friends{
-  /* border: solid; */
-  width: 100%;
-  margin-top: 0px;
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 4%;
-}
-
-.friend{
-  /* border: solid; */
-  height: 90px;
-  width: 80px;
-  display: inline-block;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  margin-top: 1%;
-  margin-bottom: 15px;
-  margin-left: 1%;
-}
-
-.friend-profilepic{
-  height: 80px;
-  width: 80px;
-  border: solid;
-  border-radius: 50%;
-  margin-bottom: 0px;
-}
-
-.friend-name{
-  margin-top: 0px;
-  margin-bottom: 5px;
-  text-align: center;
-}
-
-
-/* ---------------------------------------- GROUP PROFILE PAGE ------------------------------------------ */
-/* -----------------nav bar -------------------- */
-
-nav{
-  background-color: #D9D9D9;
-  display: flex;
-  font-size: 20px;
-  text-decoration: none;
-  justify-content: space-between; 
-  width: 100%;
-}
-
-nav ul li{
-  display: inline-block;
-  text-decoration: none;
-}
-
 ul {
   list-style-type: none;
-  text-decoration: none;
-  color: black;
-  width: 100%;
 }
 
-nav ul li a{
-  text-decoration: none;
-  color: black;
-  cursor: pointer;
-}
-.home{
-  margin-left: 0
-
-} 
-.profile{
-  margin-left: 300px;
-}
-
-/* ----------------- GROUP INFO -------------------- */
-
-.group{
-  height: 400px;
-  width: 100%;
-  margin: 0;
-}
-.background-photo{
-  border: solid;
-  display: block;
-  background-color: rgb(255, 255, 255);
-  height: 200px;
-  width: 100%;
-}
-
-.group-pic{
-  height: 150px;
-  width: 150px;
-  border: solid;
-  border-radius: 50%;
-  position: absolute;
-  top: 70%;
-  left: 50%; 
-  transform: translateX(-50%);
-  z-index: 1;
-  background-color: grey;
-}
-
-.photo{
-  position: relative;
-  margin: 0;
-  padding: 0;
-}
-
-.group-info{
-  margin-top: 110px;
+/* ---------------------------------------- edit page------------------------------------------ */
+.edit-header{
+  margin-top: 40%;
   text-align: center;
 }
-
-.name{
-  font-size: 30px;
-  font-weight: 800;
-  margin-bottom: 0px;
-}
-
-.desc{
-  font-weight: 400;
-  font-size: 20px;
+#update-box{
+  display: block;
   margin-top: 5px;
 }
 
-/* ----------------- MEMBERS -------------------- */
-.section-header{
-  font-size: 25px;
-  margin-bottom: 5px;
-  margin-left: 2%;
+.centered-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.individuals{
-  /* border: solid; */
-  width: 100%;
-  margin-top: 0px;
-  display: flex;
-  flex-wrap: wrap;
+.submit-button{
+  background-color: blue;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 25px;
+  display: block;
 }
 
-.individual{
-  /* border: solid; */
-  height: 90px;
-  width: 80px;
+
+/* ---------------------------------------- footer ------------------------------------------ */
+.footer-nav ul li{
   display: inline-block;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  margin-top: 1%;
-  margin-bottom: 15px;
-  margin-left: 1%;
-}
-
-.individual-profilepic{
-  height: 80px;
-  width: 80px;
-  border: solid;
-  border-radius: 50%;
-  margin-bottom: 0px;
-}
-
-.individual-name{
-  margin-top: 0px;
-  margin-bottom: 5px;
-  text-align: center;
-}
-
-
-/* ----------------- POSTS -------------------- */
-.posts-lists ul li{
-  font-size: 25px;
-  font-weight: 800;
-  margin-top: 0px;
-  text-decoration: underline;
-}
-
-.posts{
-  margin-bottom: 100px;
+  justify-content: space-around;
 }
 
 footer{
-  position: relative;
-  bottom: 0;
+  padding: 20px 20px 20px 10px;
+  background-color: rgb(0, 0, 117);
+  color: white;
+}
+
+.footer-nav ul{
+  text-align: center;
 }
