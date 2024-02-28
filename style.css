@@ -128,8 +128,8 @@ ul {
 }
 
 .submit-button{
-  background-color: blue;
-  padding: 5px;
+  background-color: rgb(0, 0, 117);
+  padding: 6px;
   padding-left: 10px;
   padding-right: 10px;
   color: white;
@@ -154,4 +154,17 @@ footer{
 
 .footer-nav ul{
   text-align: center;
+}
+
+
+/* ---------------------------------------- login ------------------------------------------ */
+.login-input{
+  margin-bottom: 6px;
+  height: 25px;
+}
+
+.login-header{
+  font-style: italic;
+  margin-top: 80px;
+  color: rgb(0, 0, 117)
 }
