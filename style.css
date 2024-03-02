@@ -156,6 +156,11 @@ footer{
   text-align: center;
 }
 
+footer ul li a{
+  color: white;
+  margin: 0px 15px 0px 15px;
+  font-size: 20px;
+}
 
 /* ---------------------------------------- login ------------------------------------------ */
 .login-input{
@@ -165,6 +170,6 @@ footer{
 
 .login-header{
   font-style: italic;
-  margin-top: 80px;
+  margin-top: 14%;
   color: rgb(0, 0, 117)
 }
