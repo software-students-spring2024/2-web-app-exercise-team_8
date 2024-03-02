@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Caption and Upload</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #b8c2e9;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .header img {
+            width: 30px;
+            height: 20px;
+        }
+
+        .upload_container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .caption_area {
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .caption_input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .upload_btn {
+            padding: 10px 20px;
+            background-color: #4a69bd;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            background-color: white;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div>
+            <img src="https://placehold.co/30x20" alt="Logo">
+            <p>user</p>
+        </div>
+    </div>
+    <div class="upload_container">
+        <div class="caption_area">
+            <input type="text" placeholder="Enter caption here..." class="caption_input">
+            <input type="file" accept="image/*" capture="camera" class="upload_btn">
+        </div>
+        <button onclick="uploadFunction()" class="upload_btn">Upload</button>
+    </div>
+    <div class="footer">
+        <button onclick="location.href='homepage1.html'" style="background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: inherit; font: inherit;">
+            Go back home
+        </button>
+    </div>
+
+    <script>
+        function uploadFunction() {
+            // Implement the upload logic here.
+            // This is where you would gather the caption and the selected file
+            // and then send it to the server or handle it according to your application's needs.
+            alert('Uploading...');
+        }
+    </script>
+</body>
+
+</html>
