@@ -19,6 +19,7 @@
         .header {
             display: flex;
             justify-content: space-between;
+            padding: 20px;
         }
 
         .outer_square {
@@ -44,7 +45,7 @@
         .inner_square:nth-child(2) {
             top: 50%;
             left: 50%;
-            transform: translateY(-50%) translateX(-50%);
+            transform: translate(-50%, -50%);
             z-index: 4;
         }
 
@@ -54,37 +55,18 @@
             z-index: 3;
         }
 
-        .header {
-            padding: 20px;
-        }
-
         .header button {
             margin-top: 20px;
             padding: 3px 30px;
         }
 
-        img {
-            border-radius: 50%;
-        }
-
         .image_grid {
-            border-bottom: 1px solid black;
-            border-top: 1px solid black;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 20px;
-            padding-bottom: 15px;
-            padding-top: 15px;
-        }
-
-        .header+div.image_grid {
-            border-top: none;
-            padding-top: none;
-        }
-
-        .image_grid img {
-            width: 20%;
+            padding: 15px;
+            border-bottom: 1px solid black; /* Restored line */
         }
 
         h1 {
@@ -99,29 +81,47 @@
 
         .scrollable {
             height: 400px;
-            overflow: scroll;
+            overflow: auto;
+            padding-top: 5px; /* Adjusted spacing */
         }
 
         .unit {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .footer {
             position: fixed;
             bottom: 0;
             background-color: white;
-            width: 100vw;
+            width: 100%;
             text-align: center;
+            padding: 5px 0;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .footer img {
-            width: 30px;
-            height: auto;
-            padding-top: 10px;
+        /* Button styling for image placeholders */
+        .image_grid button {
+            width: 90px;
+            height: 80px;
+            border: none;
+            cursor: pointer;
+            background-size: cover;
+            border-radius: 50%;
+            margin: 0 10px; /* Added spacing around buttons */
         }
+
+        /* Example button backgrounds */
+        .btn1 { background-image: url('https://placehold.co/90x80'); }
+        .btn2 { background-image: url('https://placehold.co/90x80'); }
+        .btn3 { background-image: url('https://placehold.co/90x80'); }
+        .btn4 { background-image: url('https://placehold.co/90x80'); }
+        .btn5 { background-image: url('https://placehold.co/90x80'); }
+        .btn6 { background-image: url('https://placehold.co/90x80'); }
+        .btn7 { background-image: url('https://placehold.co/90x80'); }
+        .btn8 { background-image: url('https://placehold.co/90x80'); }
+        .btn9 { background-image: url('https://placehold.co/90x80'); }
     </style>
 </head>
 
@@ -132,72 +132,106 @@
             <div class="inner_square"></div>
             <div class="inner_square"></div>
         </div>
-        <button>
-            Groups
-        </button>
         <div>
-            <img src="https://placehold.co/30x20" alt="20x20">
+            <img src="https://placehold.co/30x20" alt="Logo">
             <p>user</p>
         </div>
     </div>
     <div class="image_grid">
-        <img src="https://placehold.co/90x80" alt="80x80">
-        <img src="https://placehold.co/90x80" alt="80x80">
-        <img src="https://placehold.co/90x80" alt="80x80">
-        <img src="https://placehold.co/90x80" alt="80x80">
+        <h1>Hi Name</h1>
     </div>
-    <div class="scrollable">
-        <h1>
-            Weeks
-        </h1>
-        <div class="unit">
-            <h3>
-                current week
-            </h3>
-            <div class="image_grid">
-                <img src="https://placehold.co/90x80" alt="80x80">
-                <img src="https://placehold.co/90x80" alt="80x80">
-                <img src="https://placehold.co/90x80" alt="80x80">
-                <img src="https://placehold.co/90x80" alt="80x80">
-            </div>
+    <div
+    class="scrollable">
+    <h1>Weeks</h1>
+    <div class="unit">
+        <h3>current week</h3>
+        <div class="image_grid">
+                <button class="btn1" onclick="location.href='all__post.html'"></button>
+                <button class="btn2" onclick="location.href='all__post.html'"></button>
+                <button class="btn3" onclick="location.href='all__post.html'"></button>
+                <button class="btn4" onclick="location.href='all__post.html'"></button>
+                <button class="btn5" onclick="location.href='all__post.html'"></button>
+                <button class="btn6" onclick="location.href='all__post.html'"></button>
+                <button class="btn7" onclick="location.href='all__post.html'"></button>
+                <button class="btn8" onclick="location.href='all__post.html'"></button>
+                <button class="btn9" onclick="location.href='all__post.html'"></button>
         </div>
-        <div class="unit">
-            <h3>
-                week number
-            </h3>
-            <div class="image_grid">
-                <img src="https://placehold.co/90x80" alt="80x80">
-                <img src="https://placehold.co/90x80" alt="80x80">
-                <img src="https://placehold.co/90x80" alt="80x80">
-                <img src="https://placehold.co/90x80" alt="80x80">
-            </div>
+    </div>
+    <div class="unit">
+        <h3>week number</h3>
+        <div class="image_grid">
+                <button class="btn1" onclick="location.href='all__post.html'"></button>
+                <button class="btn2" onclick="location.href='all__post.html'"></button>
+                <button class="btn3" onclick="location.href='all__post.html'"></button>
+                <button class="btn4" onclick="location.href='all__post.html'"></button>
+                <button class="btn5" onclick="location.href='all__post.html'"></button>
+                <button class="btn6" onclick="location.href='all__post.html'"></button>
+                <button class="btn7" onclick="location.href='all__post.html'"></button>
+                <button class="btn8" onclick="location.href='all__post.html'"></button>
+                <button class="btn9" onclick="location.href='all__post.html'"></button>
         </div>
-        <div class="unit">
-            <h3>
-                week number
-            </h3>
-            <div class="image_grid">
-                <img src="https://placehold.co/90x80" alt="80x80">
-                <img src="https://placehold.co/90x80" alt="80x80">
-                <img src="https://placehold.co/90x80" alt="80x80">
-                <img src="https://placehold.co/90x80" alt="80x80">
-            </div>
+    </div>
+    <div class="unit">
+        <h3>week number</h3>
+        <div class="image_grid">
+                <button class="btn1" onclick="location.href='all__post.html'"></button>
+                <button class="btn2" onclick="location.href='all__post.html'"></button>
+                <button class="btn3" onclick="location.href='all__post.html'"></button>
+                <button class="btn4" onclick="location.href='all__post.html'"></button>
+                <button class="btn5" onclick="location.href='all__post.html'"></button>
+                <button class="btn6" onclick="location.href='all__post.html'"></button>
+                <button class="btn7" onclick="location.href='all__post.html'"></button>
+                <button class="btn8" onclick="location.href='all__post.html'"></button>
+                <button class="btn9" onclick="location.href='all__post.html'"></button>
         </div>
-        <div class="unit">
-            <h3>
-                week number
-            </h3>
-            <div class="image_grid">
-                <img src="https://placehold.co/90x80" alt="80x80">
-                <img src="https://placehold.co/90x80" alt="80x80">
-                <img src="https://placehold.co/90x80" alt="80x80">
-                <img src="https://placehold.co/90x80" alt="80x80">
-            </div>
+    </div>
+    <div class="unit">
+        <h3>week number</h3>
+        <div class="image_grid">
+            <button class="btn1" onclick="location.href='all__post.html'"></button>
+                <button class="btn2" onclick="location.href='all__post.html'"></button>
+                <button class="btn3" onclick="location.href='all__post.html'"></button>
+                <button class="btn4" onclick="location.href='all__post.html'"></button>
+                <button class="btn5" onclick="location.href='all__post.html'"></button>
+                <button class="btn6" onclick="location.href='all__post.html'"></button>
+                <button class="btn7" onclick="location.href='all__post.html'"></button>
+                <button class="btn8" onclick="location.href='all__post.html'"></button>
+                <button class="btn9" onclick="location.href='all__post.html'"></button>
         </div>
+    </div>
+    <div class="unit">
+        <h3>week number</h3>
+        <div class="image_grid">
+            <button class="btn1" onclick="location.href='all__post.html'"></button>
+                <button class="btn2" onclick="location.href='all__post.html'"></button>
+                <button class="btn3" onclick="location.href='all__post.html'"></button>
+                <button class="btn4" onclick="location.href='all__post.html'"></button>
+                <button class="btn5" onclick="location.href='all__post.html'"></button>
+                <button class="btn6" onclick="location.href='all__post.html'"></button>
+                <button class="btn7" onclick="location.href='all__post.html'"></button>
+                <button class="btn8" onclick="location.href='all__post.html'"></button>
+                <button class="btn9" onclick="location.href='all__post.html'"></button>
+        </div>
+    </div>
+    <div class="unit">
+        <h3>week number</h3>
+        <div class="image_grid">
+            <button class="btn1" onclick="location.href='all__post.html'"></button>
+                <button class="btn2" onclick="location.href='all__post.html'"></button>
+                <button class="btn3" onclick="location.href='all__post.html'"></button>
+                <button class="btn4" onclick="location.href='all__post.html'"></button>
+                <button class="btn5" onclick="location.href='all__post.html'"></button>
+                <button class="btn6" onclick="location.href='all__post.html'"></button>
+                <button class="btn7" onclick="location.href='all__post.html'"></button>
+                <button class="btn8" onclick="location.href='all__post.html'"></button>
+                <button class="btn9" onclick="location.href='all__post.html'"></button>
+        </div>
+    </div>
     </div>
     <div class="footer">
-        <img src="search.png" alt="80x80">
-        <p>search</p>
+        <button onclick="location.href='caption.html'" style="background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: inherit; font: inherit;">
+            Upload
+        </button>
     </div>
 </body>
 
