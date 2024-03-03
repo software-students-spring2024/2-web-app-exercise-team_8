@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Caption and Upload</title>
+    <link rel="stylesheet" href="style.css"> 
     <style>
         * {
             margin: 0;
@@ -32,6 +33,7 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            margin-top: 40%;
         }
 
         .caption_area {
@@ -50,7 +52,7 @@
 
         .upload_btn {
             padding: 10px 20px;
-            background-color: #4a69bd;
+            background-color: rgb(0, 0, 117);
             color: #fff;
             border: none;
             cursor: pointer;
@@ -73,33 +75,30 @@
 </head>
 
 <body>
-    <div class="header">
-        <div>
-            <img src="https://placehold.co/30x20" alt="Logo">
-            <p>user</p>
-        </div>
-    </div>
     <div class="upload_container">
         <div class="caption_area">
-            <input type="text" placeholder="Enter caption here..." class="caption_input">
+            <input type="text" placeholder="Enter thoughts..." class="caption_input">
+        </div>
+        <div class="upload-file">
             <input type="file" accept="image/*" capture="camera" class="upload_btn">
         </div>
-        <button onclick="uploadFunction()" class="upload_btn">Upload</button>
+        <!-- <button onclick="uploadFunction()" class="upload_btn">Upload</button> -->
+        <button" class="upload_btn">Upload</button>
     </div>
-    <div class="footer">
-        <button onclick="location.href='homepage1.html'" style="background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: inherit; font: inherit;">
-            Go back home
-        </button>
-    </div>
-
+    <footer class="footer-nav">
+        <ul>
+          <li><a href="home_page.html">feed</a></li>
+          <li><a href="upload_post.html">post</a></li>
+          <li><a href="#">search</a></li>
+          <li><a href="individual-profile.html">profile</a></li>
+        </ul>
+    </footer>
+<!-- 
     <script>
         function uploadFunction() {
-            // Implement the upload logic here.
-            // This is where you would gather the caption and the selected file
-            // and then send it to the server or handle it according to your application's needs.
             alert('Uploading...');
         }
-    </script>
+    </script> -->
 </body>
 
 </html>

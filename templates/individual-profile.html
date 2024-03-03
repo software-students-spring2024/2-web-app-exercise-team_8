@@ -10,34 +10,31 @@
 
   <body>
     <div class="edit">
-      <a href="edit.html"><button class="edit-button"> EDIT </button> </a> 
+      <a href="edit-profile.html"><button class="edit-button"> EDIT </button> </a> 
     </div>
     <div class="person">
       <div class="photo">
         <img src="images/damla/profilepic.png" class="profile-pic">
       </div>
       <div class="person-info">
-        <p class="name">{{ person.name }}</p>
-        <p class="desc">{{ person.email }}</p>
+        <p class="name">{{ user['name'] }}</p>
       </div>
      </div>
 
      <div class="personal-info">
       <ul>
         <li>email </li>
-        <li id="person-personal-info">{{ person.email }}</li>
-        <li>password </li>
-        <li id="person-personal-info">{{ person.password }}</li>
+        <li id="person-personal-info">{{ user['email'] }}</li>
       </ul>
      </div>
 
   
      <footer class="footer-nav">
-        <ul>
-          <li><a href="individual-profile.html">profile</a></li>
-          <li><a href="#">post</li></a>
-          <li><a href="home_page.html">feed</a></li>
-        </ul>
-    </footer>
+      <ul>
+        <li><a href="home_page.html">feed</a></li>
+        <li><a href="upload_post.html">post</a></li>
+        <li><a href="individual-profile.html">profile</a></li>
+      </ul>
+  </footer>
   </body>
 </html>

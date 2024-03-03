@@ -14,22 +14,21 @@
         <p>Type in your new email and/or password</p>
     </div>
     <div class="centered-form">
-      <form method="POST" action="{{ url_for('edit_post', post_id=doc._id) }}">
+     <form method="POST" action="{{ url_for('edit_post', post_id=doc._id) }}">       <!--GO OVER THIS -->
           <input type="text" id="name" name="name"  placeholder="Your name"/>
           <br />
-          <textarea id="update-box" name="email" placeholder="Update Email">{{person.email}}</textarea>
-          <textarea id="update-box" name="password" placeholder="Update Password">{{person.password}}</textarea>
+          <textarea id="update-box" name="email" placeholder="Update Email"></textarea>
+          <textarea id="update-box" name="password" placeholder="Update Password"></textarea>
           <br />
           <input class="submit-button" type="submit" value="Save" />
       </form>
     </div>  
-  
-     <footer class="footer-nav">
-        <ul>
-          <li><a href="#"></a>profile</li>
-          <li><a href="#"></a>post</li>
-          <li><a href="#"></a>feed</li>
-        </ul>
-    </footer>
+    <footer class="footer-nav">
+      <ul>
+        <li><a href="home_page.html">feed</a></li>
+        <li><a href="upload_post.html">post</a></li>
+        <li><a href="individual-profile.html">profile</a></li>
+      </ul>
+  </footer>
   </body>
 </html>

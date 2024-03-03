@@ -45,6 +45,45 @@ body {
   margin: 0px 10px;
 }
 
+/* ---------------------------------------- HOME FEED PAGE ------------------------------------------ */
+.welcome-header{
+  color: rgb(0, 0, 117);
+  text-align: center;
+  margin: 0;
+  margin-top: 20%;
+}
+.scrollable{
+  text-align: center;
+
+}
+
+.posts-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.post {
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px;
+  margin-top: 15%;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+
+.post-button{
+  background-color: rgb(0, 0, 117);
+  padding: 10px;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 30px;
+
+}
+
 /* ---------------------------------------- PERSONAL PROFILE PAGE ------------------------------------------ */
 
 .edit{
@@ -55,7 +94,7 @@ body {
   margin-top: 15px;
 }
 .edit-button{
-  background-color: blue;
+  background-color: rgb(0, 0, 117);
   padding: 10px;
   color: white;
   font-weight: 500;
@@ -139,6 +178,13 @@ ul {
   display: block;
 }
 
+
+/* ---------------------------------------- upload page------------------------------------------ */
+
+.upload-file{
+  margin-bottom: 5px;
+  text-align: center;
+}
 
 /* ---------------------------------------- footer ------------------------------------------ */
 .footer-nav ul li{
