@@ -66,10 +66,25 @@ body {
   border: 1px solid #ccc;
   padding: 5px;
   margin: 5px;
-  margin-top: 15%;
-  max-width: 100%;
+  margin-top: 20px;
   box-sizing: border-box;
   text-align: center;
+  width: 150px;
+  height: 150px;
+}
+
+.search{
+  text-align: center;
+}
+
+.search-button{
+  background-color: rgb(0, 0, 117);
+  padding: 2px;
+  color: white;
+  font-weight: 500;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 
@@ -164,6 +179,7 @@ ul {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 40%;
 }
 
 .submit-button{
@@ -178,11 +194,24 @@ ul {
   display: block;
 }
 
+.profilepic-upload-btn{
+  background-color: rgb(0, 0, 117);
+  padding: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 25px;
+  display: block;
+  margin: 5px 0px 10px 0px;
+}
+
 
 /* ---------------------------------------- upload page------------------------------------------ */
 
-.upload-file{
-  margin-bottom: 5px;
+.upload-btn{
+  margin-bottom: 50px;
   text-align: center;
 }
 
