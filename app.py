@@ -28,20 +28,24 @@ posts = db["posts"]
 def register():
     message = None
     if request.method == 'POST':
-        users = db.users
-        existing_user = users.find_one({'username': request.form['username']})
+        new_name = request.form['name']
+        new_username = request.form['username']
+        new_password = request.form['password']
+
+        existing_user = users.find_one({'username': new_username})
         
         if existing_user is None:
-            name = request.form['name']
-            hashpass = bcrypt.hashpw(request.form['password'], bcrypt.gensalt())
-            users.insert_one({'username': request.form['username'], 'password': hashpass, 'name': name})
-            session['username'] = request.form['username']
+            hashpass = bcrypt.hashpw(new_password, bcrypt.gensalt())
+            users.insert_one({'username': new_username, 'password': hashpass, 'name': new_name})
+            session['username'] = new_username
             return redirect(url_for('home'))
         
         message = 'That username already exists!'
         return render_template('sign-up.html', message=message)
     
     return render_template('sign-up.html')
+
+
 
 
 
