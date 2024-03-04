@@ -344,7 +344,7 @@ def upload_post():
         'text': text,
         'image_path': image_path,
         'time_created': datetime.datetime.utcnow(),
-        'date': datetime.date.today().strftime("%m/%d/%Y") # date is stored as a string in mm-dd-yyyy
+        'date': datetime.date.today().strftime("%Y-%m-%d") # date is stored as a string in mm-dd-yyyy
     }
 
     # insert post
