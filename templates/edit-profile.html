@@ -12,6 +12,9 @@
     <div class="edit-header">
         <h2>Update Profile</h2>
         <p>Type in your new email and/or password</p>
+        {% if message %}
+        <p style="color: red; font-weight: 600; margin-bottom: 20%;"> {{ message }} </p>
+        {% endif %}
     </div>
     <div class="centered-form">
       <form action="/upload_profile_pic" method="post" enctype="multipart/form-data">
@@ -19,10 +22,10 @@
         <input type="file" id="profile_pic" name="profile_pic" accept="image/*">
         <input type="submit" value="Upload" class="profilepic-upload-btn">
     </form>
-     <form method="POST" action="{{ url_for('edit_post', post_id=doc._id) }}">       <!--GO OVER THIS -->
+     <form method="POST" action="{{ url_for('change_info') }}">       <!--GO OVER THIS -->
           <input type="text" id="name" name="name"  placeholder="Your name"/>
           <br />
-          <textarea id="update-box" name="email" placeholder="Update Email"></textarea>
+          <textarea id="update-box" name="username" placeholder="Update Username (email)"></textarea>
           <textarea id="update-box" name="password" placeholder="Update Password"></textarea>
           <br />
           <input class="submit-button" type="submit" value="Save" />
