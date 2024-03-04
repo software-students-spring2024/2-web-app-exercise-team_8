@@ -45,7 +45,6 @@ def register():
 
         #existing_user = users.find_one({'username': new_username})
         existing_user = users.find({})
-        print(f"123 {existing_user}")
         
         if existing_user is None:
             hashpass = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
@@ -55,7 +54,6 @@ def register():
         
         message = 'That username already exists!'
         # return render_template('sign-up.html', message=message)
-        return "hello"
     
     return render_template('sign-up.html', message=message) 
    
