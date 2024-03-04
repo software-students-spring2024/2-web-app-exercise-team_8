@@ -9,22 +9,23 @@
 </head>
 <body>
   <div class="single-post">
-    <a href="edit-post.html"><button class="post-button"> edit </button></a>
-    <button class="post-button"> delete </button>
-    <p>Date: {{ post['date'].strftime('%Y-%m-%d') }}</p>
+    <a href="{{ url_for('show_edit_form', post_id=post['_id']) }}"><button class="post-button"> edit </button></a>
+    <a href="{{ url_for('delete_post', post_id=post['_id']) }}"><button class="post-button"> delete </button></a>
+    <p>Date: {{ post['date'] }}</p>
     <!-- Display the image if it exists -->
   <a href="{{ url_for('edit_post', post_id=post['_id']) }}">
     {% if post['image_path'] %}
         <img src="{{ post['image_path'] }}" alt="Post Image" style="max-width:300px;">
-        <p> {{ post['text'] }} </p>
     {% endif %}
-
+    </a>
+    <p> {{ post['text'] }} </p>
     </div>
+
     <footer class="footer-nav">
       <ul>
-        <li><a href="home_page.html">feed</a></li>
-        <li><a href="upload_post.html">post</a></li>
-        <li><a href="individual-profile.html">profile</a></li>
+        <li><a href="{{ url_for('home') }}">feed</a></li>
+        <li><a href="{{ url_for('show_post_form') }}">post</a></li>
+        <li><a href="{{ url_for('profile') }}">profile</a></li>
       </ul>
   </footer>
 </body>

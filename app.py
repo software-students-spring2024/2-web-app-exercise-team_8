@@ -15,15 +15,18 @@ UPLOAD_FOLDER = '/images'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.secret_key = "323qssssa"
 
 
 
-# mongoDB connection
-#client = pymongo.MongoClient(os.getenv('MONGO_URI')
-client = pymongo.MongoClient(os.getenv('MONGO_URI'))
-db = client[os.getenv('MONGO_DBNAME')]
-users = db["users"]
-posts = db["posts"]
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("MONGODB_PW")
+DB_HOST = os.getenv("DB_HOST")
+uri = f"mongodb+srv://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/?retryWrites=true&w=majority&appName=Cluster0&tlsAllowInvalidCertificates=true"
+client = pymongo.MongoClient(uri)
+db = client.get_database("seven")
+user_collection = db.get_collection("users")
+post_collection = db.get_collection("posts")
 
 # the following try/except block is a way to verify that the database connection is alive (or not)
 try:
@@ -36,7 +39,7 @@ except Exception as e:
 
 # ---------------------------- user authenticatoin & account management --------------------------- #
 # user register
-@app.route('/register', methods=['POST', 'GET'])
+""" @app.route('/register', methods=['POST', 'GET'])
 def register():
     message = None
     if request.method == 'POST':
@@ -52,6 +55,31 @@ def register():
             users.insert_one({'username': new_username, 'password': hashpass, 'name': new_name})
             session['username'] = new_username
             return redirect(url_for('home'))
+        
+        message = 'That username already exists!'
+        return render_template('sign-up.html', message=message)
+    
+    return render_template('sign-up.html', message=message)  """
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    message = None
+    if request.method == 'POST':
+        new_name = request.form['name']
+        new_username = request.form['username']
+        new_password = request.form['password']
+
+        existing_user = user_collection.find_one({'username': new_username})
+        #existing_user = user_collection.find({})
+        #print(existing_user)
+        
+        if existing_user is None:
+            #hashpass = bcrypt.hashpw(new_password, bcrypt.gensalt())
+            hashpass = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
+            user_collection.insert_one({'username': new_username, 'password': hashpass, 'name': new_name})
+            session['username'] = new_username
+            return redirect(url_for('home'))
+
         
         message = 'That username already exists!'
         return render_template('sign-up.html', message=message)
@@ -87,10 +115,10 @@ def register():
 def login():
     message = None
     if request.method == 'POST':
-        login_user = users.find_one({'username': request.form['username']})
+        login_user = user_collection.find_one({'username': request.form['username']})
         
         if login_user:
-            if bcrypt.checkpw(request.form['password'], login_user['password']):
+            if bcrypt.checkpw(request.form['password'].encode('utf-8'), login_user['password']):
                 session['username'] = request.form['username']
                 return redirect(url_for('home'))
         else: 
@@ -103,7 +131,29 @@ def login():
         # return redirect(url_for('login')) 
     
    #  return redirect(url_for('home'))
-    return render_template('log-in.html', message=message)
+    return render_template('log-in.html', message=message) 
+
+""" @app.route('/', methods=['POST', 'GET'])
+def login():
+    message = None
+    if request.method == 'POST':
+        login_user = user_collection.find_one({'username': request.form['username']})
+        
+        if login_user:
+            if request.form['password'] == login_user['password']:
+                session['username'] = request.form['username']
+                return redirect(url_for('home'))
+        else: 
+            message = 'User not found! Please register first.'
+            # return redirect(url_for('log-in'))
+            return render_template('log-in.html', message=message)
+        
+        message = 'Wrong username or password. Please try again.'    
+        return render_template('log-in.html', message=message)
+        # return redirect(url_for('login')) 
+    
+   #  return redirect(url_for('home'))
+    return render_template('log-in.html', message=message) """
 
 
 # user logout
@@ -111,6 +161,11 @@ def login():
 def logout():
     session.pop('username', None)
     return redirect(url_for('login'))
+
+
+@app.route('/edit_prof')
+def show_edit_prof_form():
+    return render_template('edit-profile.html')
 
 
 
@@ -124,13 +179,23 @@ def change_info():
     new_name = request.form.get('name')
     new_username = request.form.get('username')
     new_password = request.form.get('password')
+    image = request.files.get('profile_pic') # image from the form in html
+    
+    image_path = None # if there is no image uploaded
+
+    if image:
+        filename = secure_filename(image.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        image.save(filepath)
+        image_path = filepath
+        update_fields['pfp_file_path'] = image_path
     
     if new_name:
         update_fields['name'] = new_name
     
     if new_username:
         # check if the username is already taken
-        if users.find_one({'username': new_username}):
+        if user_collection.find_one({'username': new_username}):
             message = 'Username already taken!'
             return render_template('edit-profile.html', message=message)
         
@@ -145,7 +210,7 @@ def change_info():
         message = 'No changes made!'
         return render_template('edit-profile.html', message=message)
     
-    result = users.update_one({'username': session['username']}, {'$set': update_fields})
+    result = user_collection.update_one({'username': session['username']}, {'$set': update_fields})
     
     # update username in seesion if updated successfully
     if 'username' in update_fields and result.modified_count == 1:        # == 1 or > 0?
@@ -185,14 +250,14 @@ def home():
     
     search_query = None
     
-    user = users.find_one({'username': session['username']})
-    displayed_posts = posts.find({'username': session['username']}).sort('time_created', -1)
+    user = user_collection.find_one({'username': session['username']})
+    displayed_posts = post_collection.find({'username': session['username']}).sort('time_created', -1)
     
     if request.method == 'POST' and 'date' in request.form:
         date_str = request.form['date']
         if date_str:
             try:
-                displayed_posts = posts.find({'username': session['username'], 'date': date_str}).sort('time_created', -1)
+                displayed_posts = post_collection.find({'username': session['username'], 'date': date_str}).sort('time_created', -1)
                 
                 # keep the search query to display on the page
                 search_query = date_str
@@ -210,7 +275,7 @@ def home():
 def profile():
     if 'username' not in session:
         return redirect(url_for('login'))
-    user = users.find_one({'username': session['username']})
+    user = user_collection.find_one({'username': session['username']})
     
     return render_template('individual-profile.html', user=user)
 
@@ -220,9 +285,15 @@ def profile():
 # show a specific post when it is clicked on the home page
 @app.route('/post/<post_id>')
 def show_post(post_id):
-    post = posts.find_one({'_id': ObjectId(post_id)})
+    post = post_collection.find_one({'_id': ObjectId(post_id)})
     
     return render_template('post.html', post=post)
+
+
+@app.route('/show_post_form')
+def show_post_form():
+    return render_template('upload_post.html')
+
 
 
 # upload post
@@ -240,11 +311,13 @@ def upload_post():
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         image.save(filepath)
         image_path = filepath
-        
+    
+    username = session.get('username')
+    name = session.get('name')
     
     post = {
-        'username': session['username'],
-        'name': session['name'],
+        'username': username,
+        'name': name,
         'text': text,
         'image_path': image_path,
         'time_created': datetime.datetime.utcnow(),
@@ -252,7 +325,7 @@ def upload_post():
     }
 
     # insert post
-    posts.insert_one(post)
+    post_collection.insert_one(post)
     
     return redirect(url_for('home'))
 
@@ -262,8 +335,15 @@ def upload_post():
 # delete a post
 @app.route('/delete/<post_id>')
 def delete_post(post_id):
-    posts.delete_one({'_id': ObjectId(post_id)})
+    post_collection.delete_one({'_id': ObjectId(post_id)})
     return redirect(url_for('home'))
+
+
+
+@app.route('/edit-post/<post_id>')
+def show_edit_form(post_id):
+    post = post_collection.find_one({"_id": ObjectId(post_id)})
+    return render_template('edit-post.html', post=post)
 
 
 # edit an exsiting post
@@ -275,7 +355,7 @@ def edit_post(post_id):
     new_text = request.form['post-text'] #check with html form name
     
     # update the post with the new text
-    posts.update_one({'_id': ObjectId(post_id)}, {'$set': {'text': new_text}})
+    post_collection.update_one({'_id': ObjectId(post_id)}, {'$set': {'text': new_text}})
     
     return redirect(url_for('home'))
 

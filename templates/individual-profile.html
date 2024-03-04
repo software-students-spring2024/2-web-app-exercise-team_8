@@ -10,7 +10,7 @@
 
   <body>
     <div class="edit">
-      <a href="edit-profile.html"><button class="edit-button"> EDIT </button> </a> 
+      <a href="{{ url_for('show_edit_prof_form') }}"><button class="edit-button"> EDIT </button> </a> 
     </div>
     <div class="person">
       <div class="photo">
@@ -28,12 +28,11 @@
       </ul>
      </div>
 
-  
      <footer class="footer-nav">
       <ul>
-        <li><a href="home_page.html">feed</a></li>
-        <li><a href="upload_post.html">post</a></li>
-        <li><a href="individual-profile.html">profile</a></li>
+        <li><a href="{{ url_for('home') }}">feed</a></li>
+        <li><a href="{{ url_for('show_post_form') }}">post</a></li>
+        <li><a href="{{ url_for('profile') }}">profile</a></li>
       </ul>
   </footer>
   </body>

@@ -9,12 +9,12 @@
 </head>
 <body>
   <div class="single-post">
-    <p>Date: {{ post['date'].strftime('%Y-%m-%d') }}</p>
+    <p>Date: {{ post['date'] }}</p>
     <!-- Display the image if it exists -->
     {% if post['image_path'] %}
         <img src="{{ post['image_path'] }}" alt="Post Image" style="max-width:300px;">
     {% endif %}
-    <form method="POST" action="{{ url_for('edit_post', post_id=post._id) }}">       <!--GO OVER THIS -->
+    <form method="POST" action="{{ url_for('edit_post', post_id=post['_id']) }}">       <!--GO OVER THIS -->
       <textarea id="update-text" name="post-text" placeholder="edit thoughts"></textarea>
       <input class="submit-button" type="submit" value="Save" />
   </form>
@@ -23,9 +23,9 @@
 
     <footer class="footer-nav">
       <ul>
-        <li><a href="home_page.html">feed</a></li>
-        <li><a href="upload_post.html">post</a></li>
-        <li><a href="individual-profile.html">profile</a></li>
+        <li><a href="{{ url_for('home') }}">feed</a></li>
+        <li><a href="{{ url_for('show_post_form') }}">post</a></li>
+        <li><a href="{{ url_for('profile') }}">profile</a></li>
       </ul>
   </footer>
 </body>
