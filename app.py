@@ -188,15 +188,15 @@ def change_info():
     image_path = None # if there is no image uploaded
     
     if image:
-        image_data = image.read()
-        binary_data = Binary(image_data)
+        #image_data = image.read()
+        #binary_data = Binary(image_data)
 
-        """
+        
         filename = secure_filename(image.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         image.save(filepath)
         image_path = filepath
-        """
+        
         update_fields['pfp_file_path'] = binary_data
 
     if new_name:
@@ -285,11 +285,12 @@ def profile():
     if 'username' not in session:
         return redirect(url_for('login'))
     user = user_collection.find_one({'username': session['username']})
+    """
     if user['pfp_file_path'] != None:
         image_binary = user['pfp_file_path']
         image_stream = BytesIO(image_binary)
-    
-    return render_template('individual-profile.html', user=user, profile_pic=image_stream)
+    """
+    return render_template('individual-profile.html', user=user)
 
     
 
@@ -298,10 +299,10 @@ def profile():
 @app.route('/post/<post_id>')
 def show_post(post_id):
     post = post_collection.find_one({'_id': ObjectId(post_id)})
-    image_path=post['image_path']
-    encoded_image = base64.b64encode(image_path).decode('utf-8')
+    #image_path=post['image_path']
+    #encoded_image = base64.b64encode(image_path).decode('utf-8')
     
-    return render_template('post.html', post=post, image_path=encoded_image)
+    return render_template('post.html', post=post)
 
 
 @app.route('/show_post_form')
