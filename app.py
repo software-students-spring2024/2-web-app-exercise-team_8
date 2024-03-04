@@ -28,14 +28,16 @@ posts = db["posts"]
 def register():
     message = None
     if request.method == 'POST':
-        users = db.users
-        existing_user = users.find_one({'username': request.form['username']})
+        new_name = request.form['name']
+        new_username = request.form['username']
+        new_password = request.form['password']
+
+        existing_user = users.find_one({'username': new_username})
         
         if existing_user is None:
-            name = request.form['name']
-            hashpass = bcrypt.hashpw(request.form['password'], bcrypt.gensalt())
-            users.insert_one({'username': request.form['username'], 'password': hashpass, 'name': name})
-            session['username'] = request.form['username']
+            hashpass = bcrypt.hashpw(new_password, bcrypt.gensalt())
+            users.insert_one({'username': new_username, 'password': hashpass, 'name': new_name})
+            session['username'] = new_username
             return redirect(url_for('home'))
         
         message = 'That username already exists!'
@@ -46,25 +48,27 @@ def register():
 
 
 # user login check
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def login():
     message = None
     if request.method == 'POST':
-        users = db.users
         login_user = users.find_one({'username': request.form['username']})
         
         if login_user:
             if bcrypt.checkpw(request.form['password'], login_user['password']):
                 session['username'] = request.form['username']
-                return redirect(url_for('home'))
+                # return redirect(url_for('home'))
         else: 
             message = 'User not found! Please register first.'
-            return render_template('login.html', message=message)
+            # return redirect(url_for('log-in'))
+            return render_template('log-in.html', message=message)
         
         message = 'Wrong username or password. Please try again.'    
         return render_template('login.html', message=message)
+        # return redirect(url_for('login')) 
     
-    return redirect(url_for('home'))
+   #  return redirect(url_for('home'))
+    return render_template('log-in.html')
 
 
 # user logout
@@ -139,7 +143,7 @@ def all_posts():
 
 # show home page where it has weekly feed
 # is home page the same as all_posts?
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     if 'username' not in session: # if user is not logged in
         return redirect(url_for('login'))
@@ -167,7 +171,7 @@ def home():
 
 
 # display user info/profile
-@app.route('/profile', method=['GET'])
+@app.route('/profile', methods=['GET'])
 def profile():
     if 'username' not in session:
         return redirect(url_for('login'))
