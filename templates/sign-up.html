@@ -12,8 +12,14 @@
     <div class="edit-header">
         <h2 class="login-header">seven</h2>
         <p style="font-size: 12px; margin-bottom: 30px;"font> register below </p>
+        {% if message %}
+        <p style="color: red; font-weight: 600; margin-bottom: 20%;"> {{ message }} </p>
+        {% endif %}
     </div>
-    <div class="centered-form">   
+    <form method="POST" action="{{ url_for('register') }}">
+    <div class="centered-form">  
+      <input class="login-input" type="text" placeholder="enter name" name="name" required>  
+      <br>
       <input class="login-input" type="text" placeholder="enter username" name="username" required>  
       <br> 
       <input class="login-input" type="password" placeholder="enter password" name="password" required>  
@@ -21,8 +27,8 @@
       <button class="submit-button" type="submit">sign up</button> 
       <a href="log-in.html">go back to log in</a>   
 
-  </div>   
-</form>  
+    </div>   
+    </form>  
   
   </body>
 </html>
