@@ -15,12 +15,23 @@ UPLOAD_FOLDER = '/images'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+connection_string = "mongodb://se_team8:GUwSJle33mNZ2yzM@10.43.24.253/32:5000/seven?authMechanism=SCRAM-SHA-1"
 
 # mongoDB connection
-client = pymongo.MongoClient(os.getenv('mongodb+srv://se_team8:GUwSJle33mNZ2yzW@team8.ze5o0ww.mongodb.net/'))
+#client = pymongo.MongoClient(os.getenv('MONGO_URI')
+client = pymongo.MongoClient(os.getenv('MONGO_URI'))
 db = client[os.getenv('MONGO_DBNAME')]
 users = db["users"]
 posts = db["posts"]
+
+# the following try/except block is a way to verify that the database connection is alive (or not)
+try:
+    # verify the connection works by pinging the database
+    client.admin.command("ping")  # The ping command is cheap and does not require auth.
+    print(" *", "Connected to MongoDB!")  # if we get here, the connection worked!
+except Exception as e:
+    # the ping command failed, so the connection is not available.
+    print(" * MongoDB connection error:", e)  # debug
 
 # ---------------------------- user authenticatoin & account management --------------------------- #
 # user register
@@ -32,19 +43,44 @@ def register():
         new_username = request.form['username']
         new_password = request.form['password']
 
-        existing_user = users.find_one({'username': new_username})
+        #existing_user = users.find_one({'username': new_username})
+        existing_user = users.find({})
+        print(f"123 {existing_user}")
         
         if existing_user is None:
-            hashpass = bcrypt.hashpw(new_password, bcrypt.gensalt())
+            hashpass = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
             users.insert_one({'username': new_username, 'password': hashpass, 'name': new_name})
             session['username'] = new_username
             return redirect(url_for('home'))
         
         message = 'That username already exists!'
-        return render_template('sign-up.html', message=message)
+        # return render_template('sign-up.html', message=message)
+        return "hello"
     
-    return render_template('sign-up.html')
+    return render_template('sign-up.html', message=message) 
+   
 
+
+""" @app.route('/register', methods=['POST'])
+def register():
+    message = None
+
+    new_name = request.form['name']
+    new_username = request.form['username']
+    new_password = request.form['password']
+
+    existing_user = users.find_one({'username': new_username})
+    
+    if existing_user is None:
+        hashpass = bcrypt.hashpw(new_password, bcrypt.gensalt())
+        users.insert_one({'username': new_username, 'password': hashpass, 'name': new_name})
+        session['username'] = new_username
+        return redirect(url_for('home'))
+    
+    message = 'That username already exists!'
+    return render_template('sign-up.html', message=message) 
+    
+    # return render_template('sign-up.html', message=message) """
 
 
 # user login check
@@ -57,18 +93,18 @@ def login():
         if login_user:
             if bcrypt.checkpw(request.form['password'], login_user['password']):
                 session['username'] = request.form['username']
-                # return redirect(url_for('home'))
+                return redirect(url_for('home'))
         else: 
             message = 'User not found! Please register first.'
             # return redirect(url_for('log-in'))
             return render_template('log-in.html', message=message)
         
         message = 'Wrong username or password. Please try again.'    
-        return render_template('login.html', message=message)
+        return render_template('log-in.html', message=message)
         # return redirect(url_for('login')) 
     
    #  return redirect(url_for('home'))
-    return render_template('log-in.html')
+    return render_template('log-in.html', message=message)
 
 
 # user logout
@@ -118,17 +154,17 @@ def change_info():
     
     
     if result.modified_count == 1:
-        return redirect(url_for('individual-profile.html'))
+        return redirect(url_for('profile'))
         #return 'Profile updated successfully!'
     
     # if the update failed
-    return redirect(url_for('individual-profile.html'))
+    return redirect(url_for('profile'))
 
 
 # ----------------------------- entry management ----------------------------- #
 
 # show posts by week
-@app.route('/allposts', methods=['GET'])
+""" @app.route('/allposts', methods=['GET'])
 def all_posts():
     if 'username' not in session: # if user is not logged in
         return redirect(url_for('login'))
@@ -137,7 +173,7 @@ def all_posts():
     all_posts = posts.find({'username': username})
     posts_list = list(all_posts)
     
-    return render_template('home.html', posts=posts_list)
+    return render_template('home.html', posts=posts_list) """
 
 
 

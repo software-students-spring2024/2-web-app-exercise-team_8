@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta name="viewport" content="width=device.width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>log in</title>
-    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   </head>
 
   <body>
     <div class="edit-header">
         <h2 class="login-header">seven</h2>
-        <p style="font-size: 12px; margin-bottom: 30px;"font> register below </p>
+        <p style="font-size: 12px; margin-bottom: 30px;"> register below </p>
         {% if message %}
         <p style="color: red; font-weight: 600; margin-bottom: 20%;"> {{ message }} </p>
         {% endif %}
@@ -25,7 +25,8 @@
       <input class="login-input" type="password" placeholder="enter password" name="password" required>  
       <br>
       <button class="submit-button" type="submit">sign up</button> 
-      <a href="log-in.html">go back to log in</a>   
+      <a href="{{ url_for('login') }}">go back to log in</a>
+
 
     </div>   
     </form>  
