@@ -5,6 +5,8 @@
 .vscode/
 .vscode/settings.json
 
+.env
+
 # emacs backups
 *~
 
