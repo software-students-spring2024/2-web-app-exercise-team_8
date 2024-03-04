@@ -13,4 +13,5 @@ For those who cherish intimate sharing, our app redefines online sharing by prov
 ## Task boards
 
 [Link to the Sprint 1 task board.](https://github.com/orgs/software-students-spring2024/projects/44)
+
 [Link to the Sprint 1 task board.](https://github.com/orgs/software-students-spring2024/projects/6/views/1)
