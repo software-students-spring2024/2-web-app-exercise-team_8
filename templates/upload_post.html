@@ -76,9 +76,9 @@
 </head>
 
 <body>
-    <form method="POST" action="{{ url_for('edit_post', post_id=doc._id) }}" class="upload_container">
+    <form method="POST" action="{{ url_for('upload_post') }}" enctype="multipart/form-data" class="upload_container">
         <input type="text" id="fname" name="fname" placeholder="Enter thoughts..." class="caption_input">
-        <input type="file" accept="image/*" capture="camera" class="upload_btn">
+        <input type="file" accept="image/*" capture="camera" name="image" class="upload_btn">
         <input type="submit" value="Upload" class="upload_btn">
     </form>
     <footer class="footer-nav">
