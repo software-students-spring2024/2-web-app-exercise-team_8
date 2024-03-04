@@ -161,7 +161,7 @@
     <a href="{{ url_for('show_post',post_id=post['_id'])}}"> <!-- each post is a link to a page of j that post -->
             <div class="post">
                 <!-- image should be file path  -->
-                <img src="{{ post['image_path'] }}" alt="post image" style="max-width:300px;">
+                <img src="{{ post.image_path }}" alt="post image" style="max-width:300px;">
             </div>
             </a>
         {% endfor %}

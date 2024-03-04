@@ -6,6 +6,10 @@ from dotenv import load_dotenv
 import datetime
 from bson.objectid import ObjectId
 from werkzeug.utils import secure_filename
+from io import BytesIO
+#from bson.binary import Binary
+#from PIL import Image
+#import base64
 
 load_dotenv()
 
@@ -182,14 +186,19 @@ def change_info():
     image = request.files.get('profile_pic') # image from the form in html
     
     image_path = None # if there is no image uploaded
-
+    
     if image:
+        image_data = image.read()
+        binary_data = Binary(image_data)
+
+        """
         filename = secure_filename(image.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         image.save(filepath)
         image_path = filepath
-        update_fields['pfp_file_path'] = image_path
-    
+        """
+        update_fields['pfp_file_path'] = binary_data
+
     if new_name:
         update_fields['name'] = new_name
     
@@ -276,8 +285,11 @@ def profile():
     if 'username' not in session:
         return redirect(url_for('login'))
     user = user_collection.find_one({'username': session['username']})
+    if user['pfp_file_path'] != None:
+        image_binary = user['pfp_file_path']
+        image_stream = BytesIO(image_binary)
     
-    return render_template('individual-profile.html', user=user)
+    return render_template('individual-profile.html', user=user, profile_pic=image_stream)
 
     
 
@@ -286,8 +298,10 @@ def profile():
 @app.route('/post/<post_id>')
 def show_post(post_id):
     post = post_collection.find_one({'_id': ObjectId(post_id)})
+    image_path=post['image_path']
+    encoded_image = base64.b64encode(image_path).decode('utf-8')
     
-    return render_template('post.html', post=post)
+    return render_template('post.html', post=post, image_path=encoded_image)
 
 
 @app.route('/show_post_form')
@@ -305,8 +319,16 @@ def upload_post():
     text = request.form['text'] #text from the form in html 
     image = request.files.get('image') # image from the form in html
     
+    
     image_path = None # if there is no image uploaded
     if image:
+        """
+        out = BytesIO()
+        with Image.open(image) as img:
+            img.save(out, format='png')
+        image_path = out.getvalue()
+ 
+        """
         filename = secure_filename(image.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         image.save(filepath)
@@ -368,5 +390,5 @@ def edit_post(post_id):
 # ---------------------------------------------------------------------------- #
 
 if __name__ == '__main__':
-    FLASK_PORT = os.getenv('FLASK_PORT', '5000')
+    FLASK_PORT = os.getenv('FLASK_PORT', '8080')
     app.run(port=FLASK_PORT)
