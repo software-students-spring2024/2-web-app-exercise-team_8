@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 
 load_dotenv()
 
-UPLOAD_FOLDER = 'static/image'
+UPLOAD_FOLDER = '/images'
 
 
 
@@ -18,7 +18,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # mongoDB connection
 client = pymongo.MongoClient(os.getenv('mongodb+srv://se_team8:GUwSJle33mNZ2yzW@team8.ze5o0ww.mongodb.net/'))
-db = client[os.getenv('seven')]
+db = client[os.getenv('MONGO_DBNAME')]
 users = db["users"]
 posts = db["posts"]
 
@@ -26,6 +26,7 @@ posts = db["posts"]
 # user register
 @app.route('/register', methods=['POST', 'GET'])
 def register():
+    message = None
     if request.method == 'POST':
         users = db.users
         existing_user = users.find_one({'username': request.form['username']})
@@ -34,31 +35,34 @@ def register():
             name = request.form['name']
             hashpass = bcrypt.hashpw(request.form['password'], bcrypt.gensalt())
             users.insert_one({'username': request.form['username'], 'password': hashpass, 'name': name})
-            session['username'] = request.form['username'] #should session be username or name?
+            session['username'] = request.form['username']
             return redirect(url_for('home'))
         
-        return 'That username already exists!'
+        message = 'That username already exists!'
+        return render_template('sign-up.html', message=message)
     
-    return render_template('register.html')
+    return render_template('sign-up.html')
 
 
 
 # user login check
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    message = None
     if request.method == 'POST':
         users = db.users
         login_user = users.find_one({'username': request.form['username']})
         
         if login_user:
-            #if check_password_hash(login_user['password'], request.form['password']):
             if bcrypt.checkpw(request.form['password'], login_user['password']):
                 session['username'] = request.form['username']
                 return redirect(url_for('home'))
         else: 
-            return 'User not found! Please register first.'
-            
-        return 'Wrong username or password > :('
+            message = 'User not found! Please register first.'
+            return render_template('login.html', message=message)
+        
+        message = 'Wrong username or password. Please try again.'    
+        return render_template('login.html', message=message)
     
     return redirect(url_for('home'))
 
@@ -75,10 +79,11 @@ def logout():
 # change username
 @app.route('/profile_update', methods=['POST'])
 def change_info():
+    message = None
     update_fields = {}
     
     new_name = request.form.get('name')
-    new_username = request.form.get('email')
+    new_username = request.form.get('username')
     new_password = request.form.get('password')
     
     if new_name:
@@ -87,7 +92,9 @@ def change_info():
     if new_username:
         # check if the username is already taken
         if users.find_one({'username': new_username}):
-            return 'Username already taken!'
+            message = 'Username already taken!'
+            return render_template('edit-profile.html', message=message)
+        
         update_fields['username'] = new_username
     
     if new_password:
@@ -96,7 +103,8 @@ def change_info():
         update_fields['password'] = hashed_new_password
     
     if not update_fields:
-        return 'No changes made!'
+        message = 'No changes made!'
+        return render_template('edit-profile.html', message=message)
     
     result = users.update_one({'username': session['username']}, {'$set': update_fields})
     
@@ -151,7 +159,8 @@ def home():
                 search_query = date_str
                 
             except ValueError:
-                return 'Invalid date format! Please use mm-dd-yyyy.'
+                search_query = 'Invalid date format! Please use mm-dd-yyyy.'
+                return render_template('home_page.html', user=user, posts=displayed_posts, search_query=search_query)
     
     return render_template('home_page.html', user=user, posts=displayed_posts, search_query=search_query)
 
@@ -191,7 +200,7 @@ def upload_post():
         filename = secure_filename(image.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         image.save(filepath)
-        image_path = os.path.join('/static/image', filename)
+        image_path = filepath
         
     
     post = {
