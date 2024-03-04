@@ -4,7 +4,7 @@ A little exercise to build a web application following an agile development proc
 
 ## Product vision statement
 
-For those who cherish intimate sharing, our app redefines online sharing by providing a private space with the familiar feel of social media and the confidentiality of journaling to share your pictures and emotions authentically.
+For those who cherish intimate sharing, our app redefines online sharing by providing a private space with the familiar feel of social media and the confidentiality of journaling to share your emotions authentically.
 
 ## User stories
 
