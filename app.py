@@ -15,7 +15,8 @@ UPLOAD_FOLDER = '/images'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-connection_string = "mongodb://se_team8:GUwSJle33mNZ2yzM@10.43.24.253/32:5000/seven?authMechanism=SCRAM-SHA-1"
+
+
 
 # mongoDB connection
 #client = pymongo.MongoClient(os.getenv('MONGO_URI')
@@ -43,8 +44,8 @@ def register():
         new_username = request.form['username']
         new_password = request.form['password']
 
-        #existing_user = users.find_one({'username': new_username})
-        existing_user = users.find({})
+        existing_user = users.find_one({'username': new_username})
+        #existing_user = users.find({})
         
         if existing_user is None:
             hashpass = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
@@ -53,7 +54,7 @@ def register():
             return redirect(url_for('home'))
         
         message = 'That username already exists!'
-        # return render_template('sign-up.html', message=message)
+        return render_template('sign-up.html', message=message)
     
     return render_template('sign-up.html', message=message) 
    
